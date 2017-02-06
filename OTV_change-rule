@@ -1,0 +1,41 @@
+# portal down check
+:local hostping 77.88.8.1; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
+:local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
+:if ($pingresultA = 0) do={ 
+  :log info "portal down"; 
+  :ip route rule enable 3;
+  :system scheduler enable 1;
+  :system scheduler disable 0
+ }
+
+# portal up check
+:local hostping 77.88.8.1; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
+:local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
+:if ($pingresultA > 0) do={ 
+  :log info "portal up"; 
+  :ip route rule disable 3;
+  :system scheduler enable 0;
+  :system scheduler disable 1
+ }
+
+# beeline down check
+:local hostping 77.88.8.1; :local iface vlan932-beeline; :local rotab beeline-wifi; :local countping 3; 
+:local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
+:if ($pingresultA = 0) do={ 
+  :log info "beeline down";
+  :ip route rule disable 1;
+  :ip route rule disable 2;
+  :system scheduler enable 3;
+  :system scheduler disable 2
+ }
+
+# beeline up check
+:local hostping 77.88.8.1; :local iface vlan932-beeline; :local rotab beeline-wifi; :local countping 3; 
+:local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
+:if ($pingresultA > 0) do={ 
+  :log info "beeline up"; 
+  :ip route rule enable 1;
+  :ip route rule enable 2;
+  :system scheduler enable 2;
+  :system scheduler disable 3
+ }
