@@ -1,5 +1,5 @@
 # portal down check
-:local hostping 77.88.8.1; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
+:local hostping 8.8.8.8; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
 :local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
 :if ($pingresultA = 0) do={ 
   :log info "portal down"; 
@@ -9,7 +9,7 @@
  }
 
 # portal up check
-:local hostping 77.88.8.1; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
+:local hostping 8.8.8.8; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
 :local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
 :if ($pingresultA > 0) do={ 
   :log info "portal up"; 
@@ -19,7 +19,7 @@
  }
 
 # beeline down check
-:local hostping 77.88.8.1; :local iface vlan932-beeline; :local rotab beeline-wifi; :local countping 3; 
+:local hostping 8.8.8.8; :local iface vlan932-beeline; :local rotab beeline-wifi; :local countping 3; 
 :local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
 :if ($pingresultA = 0) do={ 
   :log info "beeline down";
@@ -30,7 +30,7 @@
  }
 
 # beeline up check
-:local hostping 77.88.8.1; :local iface vlan932-beeline; :local rotab beeline-wifi; :local countping 3; 
+:local hostping 8.8.8.8; :local iface vlan932-beeline; :local rotab beeline-wifi; :local countping 3; 
 :local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
 :if ($pingresultA > 0) do={ 
   :log info "beeline up"; 
