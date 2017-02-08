@@ -1,5 +1,5 @@
 # portal down check
-:local hostping 8.8.8.8; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
+:local hostping 8.8.8.8; :local iface ether4-portal_telenet; :local rotab main; :local countping 3; 
 :local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
 :if ($pingresultA = 0) do={ 
   :log info "portal down"; 
@@ -9,7 +9,7 @@
  }
 
 # portal up check
-:local hostping 8.8.8.8; :local iface vlan100-telenet; :local rotab main; :local countping 3; 
+:local hostping 8.8.8.8; :local iface ether4-portal_telenet; :local rotab main; :local countping 3; 
 :local pingresultA [/ping $hostping interface=$iface count=$countping routing-table=$rotab];
 :if ($pingresultA > 0) do={ 
   :log info "portal up"; 
